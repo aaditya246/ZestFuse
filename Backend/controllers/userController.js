@@ -17,10 +17,10 @@ const loginUser = async (req , res) =>{
             return res.json({sucess : false , message : "Invalid credentials"})
         }
         const token = createToken(user._id);
-        res.json({sucess : true , token});
+        res.json({ success : true , token});
     }catch(error){
         console.log(error);
-        res.json({sucess : false , message : "Error"})
+        res.json({ success : false , message : "Error"})
     }
 }
 ``
@@ -34,14 +34,14 @@ const registerUser = async (req , res ) =>{
     try{
         const exists = await userModel.findOne({email});
         if(exists){
-            return res.json({sucess:false , message: "User already exists"});
+            return res.json({ success:false , message: "User already exists"});
         }
         // validating email fromat and strong password 
         if(!validator.isEmail(email)){
-            return res.json({sucess:false , message: "Please enter a valid email"});
+            return res.json({ success:false , message: "Please enter a valid email"});
         }
         if(password.length <8 ){
-            return res.json({sucess:false , message: "Please enter a strong password"});
+            return res.json({ success:false , message: "Please enter a strong password"});
         }
 
         //  hashing user password 
@@ -55,11 +55,11 @@ const registerUser = async (req , res ) =>{
         })
         const user =  await newUser.save()
         const token = createToken(user._id)
-        res.json({sucess : true , token});
+        res.json({ success : true , token});
 
     }catch(error){
         console.log(error);
-        res.json({sucess : false , message : "Error"})
+        res.json({ success : false , message : "Error"})
     }
 }
 
