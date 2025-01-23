@@ -107,6 +107,7 @@ background-color: #fff4f2;
     gap: 10px;
     cursor: pointer;
 }
+
 @media (max-width:1050px){
     .navbar .logo{
         width: 140px;
