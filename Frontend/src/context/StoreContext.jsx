@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({});
     const url = "http://localhost:3000"
-    const [token , setToken] = useState("");
+    const [token, setToken] = useState(localStorage.getItem("token") || "");
     const [food_list , setFoodList] = useState([])
 
     const addToCart = async (itemId) => {
