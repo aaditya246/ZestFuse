@@ -50,6 +50,9 @@ const placeOrder = async (req , res ) => {
         res.json({success : false , message:"Error"})
     }
 }
+
+// verify orders 
+
 const verifyOrder = async (req,res)=>{
     const {orderId , success} = req.body;
     try{
@@ -80,4 +83,27 @@ const userOrders = async (req,res) =>{
     }
 }
 
-export {placeOrder , verifyOrder , userOrders}
+// list orders 
+
+const listOrders = async(req , res) =>{
+    try{
+        const orders = await orderModel.find({})
+        res.json({success:true , data:orders})
+    }catch(error){
+        console.log(error);
+        res.json({success:false , message:"Error"})
+    }
+}
+
+// api for updating order status 
+
+const updateStatus = async(req , res)=>{
+    try{
+        await orderModel.findByIdAndUpdate(req.body.orderId , {status:req.body.status})
+        res.json({success:true , message: "Status Updated"})
+    }catch(error){
+        console.log(error);
+        res.json({success : false , message : "Error"});
+    }
+}
+export {placeOrder , verifyOrder , userOrders , listOrders , updateStatus }
