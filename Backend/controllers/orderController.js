@@ -62,12 +62,12 @@ const verifyOrder = async (req,res)=>{
         }
         else{
             await orderModel.findByIdAndDelete(orderId);
-            res.json({success:false , message:"Not paid "})
+            res.json({success:false , message:"Not paid"})
         }
 
     }  catch(error){
         console.log(error);
-        res.json({success : false , message:"Error"})
+        res.json({success :false , message:"Error"})
     }
 }
 
@@ -83,11 +83,11 @@ const userOrders = async (req,res) =>{
     }
 }
 
-// list orders 
+// list orders for admin pannel
 
 const listOrders = async(req , res) =>{
     try{
-        const orders = await orderModel.find({userId:{ $in: [req.body.userId] } })
+        const orders = await orderModel.find({ })
         res.json({success:true , data:orders})
     }catch(error){
         console.log(error);
