@@ -3,17 +3,18 @@ import { addFood , listFood , removeFood } from "../controllers/foodController.j
 import multer from "multer"
 
 const foodRouter = express.Router();
+const storage = multer.memoryStorage();
+const upload = multer({storage});
 
 // Image Stroage Engine
 
-const stroage = multer.diskStorage({
-    destination : "uploads",
-    filename : (req , file , cb) =>{
-        return cb(null , `${Date.now()}${file.originalname}`)
-    }
-})
+// const stroage = multer.diskStorage({
+//     destination : "uploads",
+//     filename : (req , file , cb) =>{
+//         return cb(null , `${Date.now()}${file.originalname}`)
+//     }
+// })
 
-const upload = multer({storage: stroage})
 
 foodRouter.post("/add" , upload.single("image") ,addFood)
 foodRouter.get("/list" , listFood)
