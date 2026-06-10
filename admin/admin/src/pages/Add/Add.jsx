@@ -22,7 +22,7 @@ const Add = ({url}) => {
     }
 
     const onSubmitHandler = async (event) =>{
-        const url = import.meta.env.VITE_BACKEND_URL;
+        const url = VITE_BACKEND_URL;
 
         event.preventDefault();
         const formData = new FormData();

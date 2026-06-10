@@ -9,10 +9,19 @@ import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 
 const app = express()
-const port = 3000
 
 app.use(express.json())
-app.use(cors())
+const port = process.env.PORT || 3000;
+
+app.use(cors({
+    origin: [
+        process.env.FRONTEND_URL,       // your Vercel frontend URL
+        process.env.ADMIN_URL,          // your Vercel admin URL
+        "http://localhost:5173",         // local frontend dev
+        "http://localhost:5174",         // local admin dev
+    ],
+    credentials: true
+}));
 
 connectDB()
 await connectCloudinary()                                // 👈 add this

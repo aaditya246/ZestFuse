@@ -1,5 +1,6 @@
-import mongoose from "mongoose" ;
+import mongoose from "mongoose";
 
-export const connectDB = async () =>{
-    await mongoose.connect('mongodb+srv://aadityav417:tEEaioRHXVeZUe9r@cluster0.rlntx.mongodb.net/ZestFuse').then (()=>console.log("DB Connected"));
-}
+export const connectDB = async () => {
+    await mongoose.connect(process.env.MONGODB_URI)
+        .then(() => console.log("DB Connected"));
+};
